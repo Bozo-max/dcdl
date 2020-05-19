@@ -1,5 +1,5 @@
 # dcdl
-Small Python project to solve DCDL (Des Chiffres et Des Lettres
+Small Python project to solve DCDL (Des Chiffres et Des Lettres)
 
 ## Numbers
 	Compute all the possibilities and choose the best one
