@@ -11,7 +11,7 @@ def main():
         elif(choice=='2'):
             renarda.main()
         elif(choice=='3'):
-            break
+            exit(0)
         choice = input(" [1] Chiffres \n [2] Lettres \n [3] Quitter \n Faites votre choix : ")
 
     print('==== Au revoir ====')
