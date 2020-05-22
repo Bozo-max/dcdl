@@ -1,5 +1,5 @@
 # dcdl
-Small Python project to solve DCDL
+Small Python project to solve DCDL (Des Chiffres et Des Lettres)
 
 Execute dcdl.py to launch
 
