@@ -37,6 +37,15 @@ def is_best(s1, o1, curr, obj):
 
 
 def solve(nums, obj, curr_best = (None,0), seq = None):
+    """
+    Finds the best count as possible where to approach 'obj' in a reccursive way.
+
+    @param nums: list of numbers that we can use with +-*/
+    @param obj: integer that we have to reach
+    @param curr_best: tupple (best seq, best obj) that contains the current best result
+    @param seq: list of string, each string represent an operation e.g. ['1 + 2 = 3', '3 * 5 = 15']
+    @return: curr_best when every possibility has been evaluated
+    """
     #First Iteration
     if seq is None:
         seq = []
@@ -58,10 +67,12 @@ def solve(nums, obj, curr_best = (None,0), seq = None):
 
                     ni, nj = nums[i], nums[j]
 
+
                     new_nums = deepcopy(nums)
                     new_nums.remove(ni)
                     new_nums.remove(nj)
 
+                    # + and * are commutative so we only try one of the two possibilities
                     if i<j:
                         # Try +
                         new = ni+nj
@@ -80,7 +91,7 @@ def solve(nums, obj, curr_best = (None,0), seq = None):
                         new_nums.pop()
                         seq.pop()
 
-                    # Try -
+                    # Try - (we don't allow negative results)
                     if ni-nj>0:
                         new = ni-nj
                         seq.append('%d - %d = %d'%(ni,nj, new))
@@ -89,7 +100,7 @@ def solve(nums, obj, curr_best = (None,0), seq = None):
                         new_nums.pop()
                         seq.pop()
 
-                    # Try /
+                    # Try / (we don't allow non-integer results)
                     if nums[j]!=0 and ni/nj == ni//nj:
                         new = ni//nj
                         new_nums.append(new)
