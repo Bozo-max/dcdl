@@ -24,7 +24,22 @@ def main():
     print()
     return
 
-def is_best(s1, o1, curr, obj):
+def is_better(s1, o1, curr, obj):
+    """
+        Compare two result tupple (seq, obj)
+        
+        (s1, o1) is better than (s2,o2) if :
+            - s2 is None
+            - o1 is closer of obj than o2
+            - o1 and o2 are at equal distance of obj and s1 is smaller than s2
+
+        @param s1: sequence of operations to be compared
+        @param o1: result to be compared
+        @param curr: tupple which is curr_best (s2, o2)
+        @param obj: the number to reach
+        @return: boolean True if (s1, o1) is better than curr
+
+    """
     if curr[0] is None:
         return True
     s2,o2 = curr
@@ -52,7 +67,7 @@ def solve(nums, obj, curr_best = (None,0), seq = None):
 
     # If found or no more numbers available obj has been reached and the sequence is longer than the current best
     if (obj in nums) or len(nums)==1 or (curr_best[1]==obj and len(seq)>=len(curr_best[0])):
-        if is_best(seq,nums[-1], curr_best, obj):
+        if is_better(seq,nums[-1], curr_best, obj):
             return (deepcopy(seq),nums[-1])
         else:
             return curr_best
