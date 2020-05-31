@@ -50,8 +50,8 @@ def solve(nums, obj, curr_best = (None,0), seq = None):
     if seq is None:
         seq = []
 
-    # If found or no more numbers available
-    if (obj in nums) or (len(nums)==1):
+    # If found or no more numbers available obj has been reached and the sequence is longer than the current best
+    if (obj in nums) or len(nums)==1 or (curr_best[1]==obj and len(seq)>=len(curr_best[0])):
         if is_best(seq,nums[-1], curr_best, obj):
             return (deepcopy(seq),nums[-1])
         else:
@@ -66,7 +66,6 @@ def solve(nums, obj, curr_best = (None,0), seq = None):
                 if i!=j:
 
                     ni, nj = nums[i], nums[j]
-
 
                     new_nums = deepcopy(nums)
                     new_nums.remove(ni)
